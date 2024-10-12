@@ -11,6 +11,6 @@ package julianmoisesjimenezcortes.examenparcial2_ed;
 public class ExamenParcial2_ED {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Se hicieron cambios");
     }
 }
