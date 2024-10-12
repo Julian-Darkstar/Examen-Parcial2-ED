@@ -9,5 +9,6 @@ package julianmoisesjimenezcortes.examenparcial2_ed;
  * @author PC
  */
 public class Armas {
-    
+    int municion, daño, id;// id es utilizado para la generación aleatoria de armas durante un nivel.
+    String tipoAtaque, nombre;    
 }
