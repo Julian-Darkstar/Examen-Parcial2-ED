@@ -11,6 +11,18 @@ package julianmoisesjimenezcortes.examenparcial2_ed;
 public class ExamenParcial2_ED {
 
     public static void main(String[] args) {
-        System.out.println("Se hicieron cambios");
+        
+        //Generacion de inventario aleatorio
+        int IDArma;
+        Armas NuevaArma;
+        Armamento A1 = new Armamento();
+        A1.agregarAInventario(NuevaArma= new Armas(0));
+        for(int i=0; i<4; i++){
+        IDArma = (int)(Math.random()*5+1);
+         NuevaArma = new Armas(IDArma);
+            System.out.println("Arma generada" + NuevaArma.nombre);
+        A1.agregarAInventario(NuevaArma);
+        }
+        A1.mostrarArmamento();
     }
 }
