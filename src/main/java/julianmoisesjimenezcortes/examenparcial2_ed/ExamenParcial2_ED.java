@@ -25,20 +25,22 @@ public class ExamenParcial2_ED {
         }
         A1.mostrarArmamento();
         
-        PilaMonstruos pila = new PilaMonstruos();
+        ColaMonstruos cola = new ColaMonstruos();
 
-        Monstruos trasgo = new Monstruos("Trasgo", "Tierra", (int) (Math.random() * 6 + 3)); // Vida entre 3 y 8
-        Monstruos gargola = new Monstruos("Gárgola", "Aire", (int) (Math.random() * 31 + 60)); // Vida entre 60 y 90
-        Monstruos orco = new Monstruos("Orco", "Tierra", (int) (Math.random() * 81 + 120)); // Vida entre 120 y 200
-        Monstruos dragon = new Monstruos("Dragón", "Tierra y Aire", (int) (Math.random() * 301 + 300)); // Vida entre 300 y 600
+        // Generar aleatoriamente 4 monstruos y encolarlos
+        for (int i = 0; i < 4; i++) {
+            int idMonstruo = (int) (Math.random() * 4); // Generar un ID aleatorio entre 0 y 3
+            Monstruos nuevoMonstruo = new Monstruos(idMonstruo);
+            System.out.println("Monstruo generado: " + nuevoMonstruo.nombre);
+            cola.encolarMonstruo(nuevoMonstruo);
+        }
 
-        
-        pila.apilarMonstruo(trasgo);
-        pila.apilarMonstruo(gargola);
-        pila.apilarMonstruo(orco);
-        pila.apilarMonstruo(dragon);
+        // Mostrar los monstruos en la cola
+        cola.mostrarMonstruos();
 
-        // Mostrar los monstruos en la pila
-        pila.mostrarMonstruos();
+        System.out.println("\nAtacando a los monstruos en orden:");
+        while (!cola.colaMonstruos.isEmpty()) {
+            cola.desencolarMonstruo(); 
+        }
     }
 }
