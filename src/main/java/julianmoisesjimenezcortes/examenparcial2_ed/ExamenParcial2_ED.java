@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package julianmoisesjimenezcortes.examenparcial2_ed;
 
 /**
@@ -26,21 +22,37 @@ public class ExamenParcial2_ED {
         A1.mostrarArmamento();
         
         ColaMonstruos cola = new ColaMonstruos();
+        int vidaUsuario = 100; 
 
-        // Generar aleatoriamente 4 monstruos y encolarlos
         for (int i = 0; i < 4; i++) {
-            int idMonstruo = (int) (Math.random() * 4); // Generar un ID aleatorio entre 0 y 3
+            int idMonstruo = (int) (Math.random() * 4); 
             Monstruos nuevoMonstruo = new Monstruos(idMonstruo);
             System.out.println("Monstruo generado: " + nuevoMonstruo.nombre);
             cola.encolarMonstruo(nuevoMonstruo);
         }
 
-        // Mostrar los monstruos en la cola
         cola.mostrarMonstruos();
 
         System.out.println("\nAtacando a los monstruos en orden:");
-        while (!cola.colaMonstruos.isEmpty()) {
-            cola.desencolarMonstruo(); 
+
+        while (!cola.colaMonstruos.isEmpty() && vidaUsuario > 0) {
+            Monstruos monstruoActual = cola.desencolarMonstruo(); 
+
+            int dañoRecibido = monstruoActual.atacarUsuario();
+            vidaUsuario -= dañoRecibido;
+
+            if (vidaUsuario > 0) {
+                System.out.println("Vida restante del usuario: " + vidaUsuario);
+            } else {
+                System.out.println("El usuario ha sido derrotado.");
+                break;
+            }
+        }
+
+        if (vidaUsuario > 0) {
+            System.out.println("El usuario ha derrotado a todos los monstruos y le queda " + vidaUsuario + " de vida.");
+        } else {
+            System.out.println("El usuario ha sido derrotado por los monstruos.");
         }
     }
 }

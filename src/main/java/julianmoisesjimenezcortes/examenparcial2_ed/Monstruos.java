@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package julianmoisesjimenezcortes.examenparcial2_ed;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Monstruos {
-    int vida, id; // id para identificar el tipo de monstruo
+    int vida, id; 
     String tipoMonstruo, nombre;
 
     Monstruos(int id) {
@@ -17,22 +13,22 @@ public class Monstruos {
             case 0:
                 nombre = "Trasgo";
                 tipoMonstruo = "Tierra";
-                vida = (int) (Math.random() * 6 + 3); // Vida entre 3 y 8
+                vida = (int) (Math.random() * 6 + 3); 
                 break;
             case 1:
                 nombre = "Gárgola";
                 tipoMonstruo = "Aire";
-                vida = (int) (Math.random() * 31 + 60); // Vida entre 60 y 90
+                vida = (int) (Math.random() * 31 + 60); 
                 break;
             case 2:
                 nombre = "Orco";
                 tipoMonstruo = "Tierra";
-                vida = (int) (Math.random() * 81 + 120); // Vida entre 120 y 200
+                vida = (int) (Math.random() * 81 + 120); 
                 break;
             case 3:
                 nombre = "Dragón";
                 tipoMonstruo = "Tierra y Aire";
-                vida = (int) (Math.random() * 301 + 300); // Vida entre 300 y 600
+                vida = (int) (Math.random() * 301 + 300); 
                 break;
             default:
                 nombre = "Desconocido";
@@ -42,11 +38,33 @@ public class Monstruos {
         }
     }
 
+    public int atacarUsuario() {
+        int daño;
+        switch (nombre) {
+            case "Trasgo":
+                daño = (int) (Math.random() * 3 + 2); 
+                break;
+            case "Gárgola":
+                daño = (int) (Math.random() * 10 + 10); 
+                break;
+            case "Orco":
+                daño = (int) (Math.random() * 20 + 20);
+                break;
+            case "Dragón":
+                daño = (int) (Math.random() * 30 + 50); 
+                break;
+            default:
+                daño = 0;
+                break;
+        }
+        System.out.println(nombre + " ataca al usuario con " + daño + " de daño.");
+        return daño;
+    }
+
     public void mostrarInfo() {
         System.out.println("Nombre: " + nombre + ", Tipo: " + tipoMonstruo + ", Vida: " + vida);
     }
 }
-
 class ColaMonstruos {
     Queue<Monstruos> colaMonstruos;
 
@@ -54,12 +72,10 @@ class ColaMonstruos {
         colaMonstruos = new LinkedList<>();
     }
 
-    // Método para agregar monstruos a la cola
     public void encolarMonstruo(Monstruos monstruo) {
         colaMonstruos.add(monstruo);
     }
 
-    // Método para atacar y eliminar el monstruo que está al frente de la cola
     public Monstruos desencolarMonstruo() {
         if (!colaMonstruos.isEmpty()) {
             Monstruos monstruoAtacado = colaMonstruos.poll();
@@ -71,7 +87,6 @@ class ColaMonstruos {
         }
     }
 
-    // Método para mostrar los monstruos en la cola
     public void mostrarMonstruos() {
         if (colaMonstruos.isEmpty()) {
             System.out.println("No hay monstruos en la cola.");
