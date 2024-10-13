@@ -9,5 +9,13 @@ package julianmoisesjimenezcortes.examenparcial2_ed;
  * @author jr667
  */
 class Jugador {
-    
+    int vidas;
+    String NombreJug;
+     Jugador(String NombreJug, int vida){
+         this.vidas = vidas;
+         this.NombreJug = NombreJug;   
+     }
+      public void mostrarInfo() {
+        System.out.println("Jugador: " + NombreJug + "\nVidas: " + vidas);
+    }
 }

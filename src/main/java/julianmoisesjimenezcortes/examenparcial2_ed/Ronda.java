@@ -26,7 +26,7 @@ public class Ronda {
         if (tope < monstruos.length - 1) {
             tope++;
             monstruos[tope] = monstruo;
-            System.out.println("Se añade a la pila el monstruo: " + monstruos.getId());
+            System.out.println("Se añade a la pila el monstruo: " );
         } else {
             System.out.println("No se puede añadir más monstruos, pila llena.");
         }
