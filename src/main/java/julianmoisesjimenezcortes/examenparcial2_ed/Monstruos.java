@@ -1,10 +1,7 @@
 package julianmoisesjimenezcortes.examenparcial2_ed;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Monstruos {
-    int vida, id; 
+    int vida, id;
     String tipoMonstruo, nombre;
 
     Monstruos(int id) {
@@ -23,7 +20,7 @@ public class Monstruos {
             case 2:
                 nombre = "Orco";
                 tipoMonstruo = "Tierra";
-                vida = (int) (Math.random() * 81 + 120); 
+                vida = (int) (Math.random() * 81 + 120);
                 break;
             case 3:
                 nombre = "Dragón";
@@ -42,16 +39,16 @@ public class Monstruos {
         int daño;
         switch (nombre) {
             case "Trasgo":
-                daño = (int) (Math.random() * 3 + 2); 
+                daño = (int) (Math.random() * 3 + 2); // Daño entre 2 y 5
                 break;
             case "Gárgola":
-                daño = (int) (Math.random() * 10 + 10); 
+                daño = (int) (Math.random() * 10 + 10); // Daño entre 10 y 20
                 break;
             case "Orco":
-                daño = (int) (Math.random() * 20 + 20);
+                daño = (int) (Math.random() * 20 + 20); // Daño entre 20 y 40
                 break;
             case "Dragón":
-                daño = (int) (Math.random() * 30 + 50); 
+                daño = (int) (Math.random() * 30 + 50); // Daño entre 50 y 80
                 break;
             default:
                 daño = 0;
@@ -66,35 +63,59 @@ public class Monstruos {
     }
 }
 class ColaMonstruos {
-    Queue<Monstruos> colaMonstruos;
+    private static class Nodo {
+        Monstruos monstruo;
+        Nodo siguiente;
 
+        public Nodo(Monstruos monstruo) {
+            this.monstruo = monstruo;
+            this.siguiente = null;
+        }
+    }
+
+    private Nodo front, rear; 
     public ColaMonstruos() {
-        colaMonstruos = new LinkedList<>();
+        this.front = this.rear = null;
     }
 
     public void encolarMonstruo(Monstruos monstruo) {
-        colaMonstruos.add(monstruo);
+        Nodo nuevoNodo = new Nodo(monstruo);
+        if (this.rear == null) { 
+            this.front = this.rear = nuevoNodo;
+        } else {
+            this.rear.siguiente = nuevoNodo; 
+            this.rear = nuevoNodo;
+        }
+        System.out.println(monstruo.nombre + " ha sido agregado a la cola.");
     }
 
     public Monstruos desencolarMonstruo() {
-        if (!colaMonstruos.isEmpty()) {
-            Monstruos monstruoAtacado = colaMonstruos.poll();
-            System.out.println("Atacando a: " + monstruoAtacado.nombre);
-            return monstruoAtacado;
-        } else {
-            System.out.println("Ya no hay monstruos.");
+        if (this.front == null) {
+            System.out.println("No hay monstruos en la cola.");
             return null;
+        }
+        Monstruos monstruoAtacado = this.front.monstruo;
+        this.front = this.front.siguiente; 
+        if (this.front == null) { 
+            this.rear = null;
+        }
+        System.out.println("Atacando a: " + monstruoAtacado.nombre);
+        return monstruoAtacado;
+    }
+    public void mostrarMonstruos() {
+        if (this.front == null) {
+            System.out.println("No hay monstruos en la cola.");
+            return;
+        }
+        Nodo actual = this.front;
+        System.out.println("Monstruos en la cola (orden de ataque):");
+        while (actual != null) {
+            actual.monstruo.mostrarInfo();
+            actual = actual.siguiente;
         }
     }
 
-    public void mostrarMonstruos() {
-        if (colaMonstruos.isEmpty()) {
-            System.out.println("No hay monstruos en la cola.");
-        } else {
-            System.out.println("Monstruos en la cola (orden de ataque):");
-            for (Monstruos monstruo : colaMonstruos) {
-                monstruo.mostrarInfo();
-            }
-        }
+    public boolean estaVacia() {
+        return front == null;
     }
 }
