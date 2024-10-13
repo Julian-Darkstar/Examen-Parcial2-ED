@@ -4,23 +4,27 @@
  */
 package julianmoisesjimenezcortes.examenparcial2_ed;
 
+import java.util.Scanner;
+
 /**
  *
  * @author jr667
  */
 public class Ronda {
-    private int numeroDeRondas;
+    Scanner scanner = new Scanner(System.in);
+    private int numeroDeRondas = scanner.nextInt();
     private Jugador jugador;
     private Monstruos[] monstruos;
+    int NumRonda = 0;
     private int tope;  // Simula el tope de la pila
 
-    public Ronda(int numeroDeRondas, Jugador jugador, Monstruos[] monstruos) {
+    public Ronda(int numeroDeRondas, Jugador jugador, Monstruos[] monstruos, int NumRonda) {
         this.numeroDeRondas = numeroDeRondas;
         this.jugador = jugador;
         this.monstruos = monstruos;
         this.tope = -1;  // La pila empieza vacía
     }
-
+    while (NumRonda <= numeroDeRondas){
     // Empuja (push) una ronda a la "pila"
     public void pushRonda(Monstruos monstruo) {
         if (tope < monstruos.length - 1) {
@@ -45,4 +49,5 @@ public class Ronda {
     }
 }
 
+}
    

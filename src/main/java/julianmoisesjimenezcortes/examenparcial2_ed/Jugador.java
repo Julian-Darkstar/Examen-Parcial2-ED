@@ -4,18 +4,22 @@
  */
 package julianmoisesjimenezcortes.examenparcial2_ed;
 
+import java.util.Scanner;
+
 /**
  *
  * @author jr667
  */
 class Jugador {
-    int vidas;
-    String NombreJug;
-     Jugador(String NombreJug, int vida){
-         this.vidas = vidas;
-         this.NombreJug = NombreJug;   
+    Scanner scanner = new Scanner(System.in); 
+    String NombreJug = scanner.nextLine();
+    int Hp = 100;
+    
+     Jugador(String NombreJug, int Hp){ 
+         this.NombreJug = NombreJug; 
+         this.Hp = Hp;
      }
       public void mostrarInfo() {
-        System.out.println("Jugador: " + NombreJug + "\nVidas: " + vidas);
+        System.out.println("Jugador: " + NombreJug + "\nPuntos de salud: " + Hp);
     }
 }
